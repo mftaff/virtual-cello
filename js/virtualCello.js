@@ -63,6 +63,7 @@ function getNotesForScale(note, scaleKey) {
         note += scaleKey[i];
         scaleNotes.push(note);
     }
+    console.log(scaleNotes);
     return scaleNotes;
 }
 
