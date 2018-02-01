@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <!-- polyfill -->
+    <script src="../inc/shim/Base64.js" type="text/javascript"></script>
+    <script src="../inc/shim/Base64binary.js" type="text/javascript"></script>
+    <script src="../inc/shim/WebAudioAPI.js" type="text/javascript"></script>
+    <!-- midi.js package -->
+    <script src="../js/midi/audioDetect.js" type="text/javascript"></script>
+    <script src="../js/midi/gm.js" type="text/javascript"></script>
+    <script src="../js/midi/loader.js" type="text/javascript"></script>
+    <script src="../js/midi/plugin.audiotag.js" type="text/javascript"></script>
+    <script src="../js/midi/plugin.webaudio.js" type="text/javascript"></script>
+    <script src="../js/midi/plugin.webmidi.js" type="text/javascript"></script>
+    <!-- utils -->
+    <script src="../js/util/dom_request_xhr.js" type="text/javascript"></script>
+    <script src="../js/util/dom_request_script.js" type="text/javascript"></script>
+    <script src="../js/keyBindings.js" type="text/javascript"></script>
+</head>
+<body>
+    <h1>Virtual Cello</h1>
+    <div class="scale-selectors">
+        <div class="scale-selector active-scale" id="chromatic">Chromatic</div>
+        <div class="scale-selector" id="C">C Major</div>
+        <div class="scale-selector" id="Cmin">C Minor (natural)</div>
+    </div>
+
+    <br>    
+
+    <div class="cello">
+        <div class="row" id="row0">
+            <div class='position' id='36'>C</div>
+            <div class='position' id='43'>G</div> 
+            <div class='position' id='50'>D</div>
+            <div class='position' id='57'>A</div>
+        </div>
+        <div class="row" id="row1">
+            <div class='position' id='37'>C#</div>
+            <div class='position' id='44'>Ab</div> 
+            <div class='position' id='51'>Eb</div>
+            <div class='position' id='58'>Bb</div>
+        </div>
+        <div class="row" id="row2">
+            <div class='position' id='38'>D</div>
+            <div class='position' id='45'>A</div> 
+            <div class='position' id='52'>E</div>
+            <div class='position' id='59'>B</div>
+        </div>
+        <div class="row" id="row3">
+            <div class='position' id='39'>Eb</div>
+            <div class='position' id='46'>Bb</div> 
+            <div class='position' id='53'>F</div>
+            <div class='position' id='60'>C</div>
+        </div>
+        <div class="row" id="row4">
+            <div class='position' id='40'>E</div>
+            <div class='position' id='47'>B</div> 
+            <div class='position' id='54'>F#</div>
+            <div class='position' id='61'>C#</div>
+        </div>
+        <div class="row" id="row5">
+            <div class='position' id='41'>F</div>
+            <div class='position' id='48'>C</div> 
+            <div class='position' id='55'>G</div>
+            <div class='position' id='62'>D</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            MIDI.loadPlugin({
+                soundfontUrl: "./soundfont/",
+                instrument: "cello",
+                onprogress: function(state, progress) {
+                    console.log(state, progress);
+                },
+                onsuccess: function() {
+                    MIDI.programChange(0, MIDI.GM.byName['cello'].number);
+                    // var delay = 0; // play one note every quarter second
+                    // var note = 50; // the MIDI note
+                    // var velocity = 127; // how hard the note hits
+                    // // play the note
+                    // MIDI.setVolume(0, 127);
+                    // MIDI.noteOn(0, note, velocity, delay);
+                    // MIDI.noteOff(0, note, delay + 0.75);
+                    celloUI();
+                }
+            });
+        };
+    </script>
+</body>
+</html>

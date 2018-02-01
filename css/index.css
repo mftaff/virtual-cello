@@ -1,0 +1,55 @@
+body {
+    text-align: center;
+
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently for Chrome and Opera */
+}
+
+/*styles for scale selectors*/
+
+.scale-selector {
+    display: inline-block;
+    background-color: #af8042;
+    padding: 3px 14px;
+    border-radius: 10px;
+    border: 3px outset #efd7b7;
+
+    cursor: pointer;
+    cursor: -webkit-pointer;
+    cursor: -moz-pointer;
+}
+
+.active-scale {
+    border: 3px inset #efd7b7;
+}
+
+/*styles for cello fingerboard*/
+
+.position {
+    display: inline-block;
+    margin: 2px;
+    padding: 25px 0px;
+    min-width: 45px;
+    color: #c48636;
+    background-color: #6d3f02;
+
+    cursor: grab;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+
+.active {
+    background-color: #995803;
+}
+
+.not-in-scale {
+    color: rgba(196, 134, 54, 0.2);
+}
