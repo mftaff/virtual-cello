@@ -26,46 +26,47 @@ var keyboardMap = {
     77: 62  // m
  };
 var scales = {
-    chromatic: 'chromatic',
-    C: [36,38,40,41,43,45,47,48],
-    Cmin: [36,38,39,41,43,44,46,48]
-    // C: [2,2,1,2,2,2,1],
-    // Cmin: [2,1,2,2,1,2,2]
+    chromatic: [1,1,1,1,1,1,1,1,1,1,1,1], // lol
+    major: [2,2,1,2,2,2,1],
+    minor: [2,1,2,2,1,2,2],
+    minorPent: [3,2,2,3,2]
 };
+var currentScale = getNotesForScale(36, scales.chromatic);
 
-function noteInScale(note) {
-    var currentScale = scales[$('.active-scale').attr('id')];
-    if (currentScale === 'chromatic') {
-        return true;
-    } else  {
-        return currentScale.includes(note);
-    }
-}
-
-function adjustNoteToOneScale(note) {
-    if (note < 48) {
-        return note;
-    } else if (note >= 60) {
-        return note - 24;
-    } else {
-        return note - 12;
-    }
-}
-
-// function getNotesForScale(note, scaleKey) {
-//     var scaleNotes = [note];
-//     for (var i=0;i<7;i++){
-//         note += scaleKey[i];
-//         scaleNotes.push(note);
-//     }
-//     return scaleNotes;
-// }
-
+// master function - call to initialize
 function celloUI(){
     scaleSelectorBindings();
     noteBindings();
 }
 
+function noteInScale(note) {
+    return currentScale.includes(note);
+}
+
+function adjustNoteToOneScale(note) {
+    var tonic = currentScale[0];
+    if (note < tonic) {
+        return note + 12;
+    } else if (note >= tonic+24) {
+        return note - 24;
+    } else if (note >= tonic+12) {
+        return note - 12;
+    } else {
+        return note;
+    }
+}
+
+// given a tonic and a scale will return notes of that scale.
+function getNotesForScale(note, scaleKey) {
+    var scaleNotes = [note];
+    for (var i=0;i<scaleKey.length;i++){
+        note += scaleKey[i];
+        scaleNotes.push(note);
+    }
+    return scaleNotes;
+}
+
+// manage the jquery for note playing/stopping/clickint/etc
 function noteBindings() {
     var mouseDown = false;
     var keydownCount = 0;
@@ -77,7 +78,7 @@ function noteBindings() {
         }
     }
 
-    function inactiveAndStopNote(position, note, delay=0) {
+    function inactiveAndStopNote(position, note, delay=0.15) {
         position.removeClass('active');
         MIDI.noteOff(0, note, delay);
     }
@@ -121,11 +122,14 @@ function noteBindings() {
     });
 }
 
+// manage the jquery for filtering cello by scale.
 function scaleSelectorBindings() {
     $('.scale-selector').each(function() {
         $(this).click(function() {
             $('.scale-selector').removeClass('active-scale');
             $(this).addClass('active-scale');
+
+            currentScale = getNotesForScale(parseInt($(this).attr('note')), scales[this.id]);
 
             $('.position').each(function() {
                 var inScale = noteInScale(adjustNoteToOneScale(parseInt(this.id)));

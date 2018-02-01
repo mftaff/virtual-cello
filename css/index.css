@@ -33,6 +33,12 @@ body {
 
 /*styles for cello fingerboard*/
 
+.cello {
+    margin: auto;
+    width: 300px;
+    background: -webkit-gradient(linear, 100% 0%, 0% 0%, from(#B87C17), to(#B87C17), color-stop(.3,#66450D),color-stop(.8,#66450D));
+}
+
 .position {
     display: inline-block;
     margin: 2px;
@@ -52,4 +58,10 @@ body {
 
 .not-in-scale {
     color: rgba(196, 134, 54, 0.2);
+}
+
+footer {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }

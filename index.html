@@ -23,12 +23,15 @@
 <body>
     <h1>Virtual Cello</h1>
     <div class="scale-selectors">
-        <div class="scale-selector active-scale" id="chromatic">Chromatic</div>
-        <div class="scale-selector" id="C">C Major</div>
-        <div class="scale-selector" id="Cmin">C Minor (natural)</div>
+        <div class="scale-selector active-scale" id="chromatic" note="36">Chromatic</div>
+        <div class="scale-selector" id="major" note="36">C Major</div>
+        <div class="scale-selector" id="minor" note="36">C Minor (natural)</div>
+        <div class="scale-selector" id="minorPent" note="36">C Minor Pentatonic</div>
+        <div class="scale-selector" id="major" note="45">A Major</div>
+        <div class="scale-selector" id="minor" note="45">A Minor (natural)</div>
     </div>
 
-    <br>    
+    <br>
 
     <div class="cello">
         <div class="row" id="row0">
@@ -68,6 +71,10 @@
             <div class='position' id='62'>D</div>
         </div>
     </div>
+
+    <footer>
+        <a href="./about.html">Credits/About</a>
+    </footer>
 
     <script type="text/javascript">
         window.onload = function () {
