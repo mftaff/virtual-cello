@@ -60,14 +60,19 @@ body {
     color: rgba(196, 134, 54, 0.2);
 }
 
-/*styles for playback*/
+/*styles for playback studio*/
 
-.playback {
+.studio {
     position: absolute;
     right: 10%;
+}
+
+.studio-btn {
+    width: 57px;
     background-color: #ac7f3f;
     padding: 10px;
     border-radius: 10px;
+    margin: 5px;
 }
 
 /*styles for footer*/
