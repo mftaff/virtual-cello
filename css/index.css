@@ -60,6 +60,18 @@ body {
     color: rgba(196, 134, 54, 0.2);
 }
 
+/*styles for playback*/
+
+.playback {
+    position: absolute;
+    right: 10%;
+    background-color: #ac7f3f;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/*styles for footer*/
+
 footer {
     position: absolute;
     bottom: 5px;

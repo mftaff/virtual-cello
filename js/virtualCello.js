@@ -33,10 +33,13 @@ var scales = {
 };
 var currentScale = getNotesForScale(36, scales.chromatic);
 
+var recordNow = false;
+
 // master function - call to initialize
 function celloUI(){
     scaleSelectorBindings();
     noteBindings();
+    playback();
 }
 
 function noteInScale(note) {
@@ -63,7 +66,6 @@ function getNotesForScale(note, scaleKey) {
         note += scaleKey[i];
         scaleNotes.push(note);
     }
-    console.log(scaleNotes);
     return scaleNotes;
 }
 
@@ -137,5 +139,16 @@ function scaleSelectorBindings() {
                 $(this).removeClass('not-in-scale').toggleClass('not-in-scale', !inScale);
             });
         });
+    });
+}
+
+function playback() {
+    $('.playback').click(function() {
+        if (recordNow) {
+            $('#record').html('&#9658;');
+        } else {
+            $('#record').html('&#10074; &#10074;');
+        }
+        recordNow = !recordNow;
     });
 }
