@@ -30,7 +30,8 @@ var scales = {
     chromatic: [1,1,1,1,1,1,1,1,1,1,1,1], // lol
     major: [2,2,1,2,2,2,1],
     minor: [2,1,2,2,1,2,2],
-    minorPent: [3,2,2,3,2]
+    minorPent: [3,2,2,3,2],
+    majorPent: [2,2,3,2,3]
 };
 var currentScale = getNotesForScale(36, scales.chromatic);
 

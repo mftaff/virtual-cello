@@ -22,10 +22,11 @@
     <script src="../js/virtualCello.js" type="text/javascript"></script>
 </head>
 <body>
-    <h1>Virtual Cello</h1>
+    <h1 id='heading'>Virtual Cello</h1>
     <div class="scale-selectors">
         <div class="scale-selector active-scale" id="chromatic" note="36">Chromatic</div>
         <div class="scale-selector" id="major" note="36">C Major</div>
+        <div class="scale-selector" id="majorPent" note="36">C Major Pentatonic</div>
         <div class="scale-selector" id="minor" note="36">C Minor (natural)</div>
         <div class="scale-selector" id="minorPent" note="36">C Minor Pentatonic</div>
         <div class="scale-selector" id="major" note="45">A Major</div>
@@ -95,9 +96,9 @@
             MIDI.loadPlugin({
                 soundfontUrl: "./soundfont/",
                 instrument: "cello",
-                onprogress: function(state, progress) {
-                    console.log(state, progress);
-                },
+                // onprogress: function(state, progress) {
+                //     console.log(state, progress);
+                // },
                 onsuccess: function() {
                     MIDI.programChange(0, MIDI.GM.byName['cello'].number);
                     // var delay = 0; // play one note every quarter second
