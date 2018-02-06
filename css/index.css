@@ -80,7 +80,8 @@ h1 {
 }
 
 .not-in-scale {
-    color: rgba(196, 134, 54, 0.2);
+    color: #00000033;
+    /*color: rgba(196, 134, 54, 0.2);*/
 }
 
 /*styles for playback studio*/
