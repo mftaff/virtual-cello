@@ -277,17 +277,18 @@ function playback() {
         for (var i=0;i<recordings.rec.length;i++) {
             data = recordings.rec[i];
             duration = getClosestTempo(tempos, data[1]);
-            restBefore = getClosestTempo(tempos, (data[2]/2.0));
+            restBefore = floorDuration(tempos, data[2]);
             recordings.enhancedRec[i] = [data[0], duration, restBefore];
         }
     }
 
+    // Rounds rawDuration to nearest tempo
     function getClosestTempo(tempos, rawDuration) {
         var closest=tempos[4];
         var _res, close;
 
         for (var tempo in tempos) {
-            close=Math.abs(rawDuration-tempos[tempo]);
+            close = Math.abs(rawDuration-tempos[tempo]);
 
             if(close < closest){
                 closest = close;
@@ -295,6 +296,14 @@ function playback() {
             }
         }
         return _res;
+    }
+
+    // Rounds rawDuration DOWN to nearest tempo
+    function floorDuration(tempos, rawDuration) {
+        for (var i=1;i<tempos.length;i++) {
+            if (rawDuration < tempos[i]) return tempos[i-1];
+        }
+        return tempos[4];
     }
 }
 
