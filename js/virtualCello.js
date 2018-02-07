@@ -224,9 +224,11 @@ function playback() {
         restBefore = data[2]/1000.00;
         delay = data[1] + data[2];
 
+        $('#'+note).addClass('active');
         MIDI.noteOn(0, note, 127, restBefore);
         setTimeout(function(){
             MIDI.noteOff(0, note, 0);
+            $('#'+note).removeClass('active');
 
             if (notes.length) {
                 playRecording(notes);
